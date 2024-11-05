@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rad sa formularima</title>
+</head>
+<body>
+    
+    
+    <form method="post" action="/register">
+        <label for="input-ime">Ime:</label>
+        <input type="text" name="ime" placeholder="Unesite svoje ime" id="input-ime"><br>
+
+        
+        <label for="i-procenat">Procenat:</label>
+        <input type="number" name="procenat" id="i-procenat" step="0.01" min="0" max="1" value="0.5"><br>
+
+        <label>Email:</label>
+        <input type="email" name="email" id="i-email"><br>
+
+        <label for="i-phone">Telefon:</label>
+        <input type="phone" name="telefon" id="i-phone"><br>
+
+        <label>Zaposlen?</label>
+        <input type="checkbox" name="zaposlen" id="i-zaposlen" value="1"><br>
+
+        <label>Odaberite kategoriju</label> <br>
+        <input type="radio" name="kategorija" value="1"> Kategorija 1<br>
+        <input type="radio" name="kategorija" value="2"> Kategorija 2<br>
+        <input type="radio" name="kategorija" value="3"> Kategorija 3<br>
+        <input type="radio" name="kategorija" value="4"> Kategorija 4<br>
+        <input type="radio" name="kategorija" value="5"> Kategorija 5<br>
+
+
+        <label for="input-adresa">Adresa:</label><br>
+        <textarea rows="6" name="adresa" id="input-adresa">
+
+
+        </textarea><br>
+
+        <label for="input-drzava">Drzava:</label>
+        <select name="drzava" id="input-drzava">
+            <option value="0001">
+                Srbija
+            </option>
+            <option value="0002">
+                Hrvatska
+            </option>
+            <option value="0003">
+                Crna Gora
+            </option>
+            <option value="0004">
+                Bosna i Hercegovina
+            </option>
+            <option value="0005">
+                Slovenija
+            </option>
+            <option value="0006">
+                Makedonija
+            </option>
+        </select>
+
+        <label for="i-drzava">Drzava 2:</label>
+        <input name="drzava2" id="i-drzava">
+        <datalist id="spisak-drzava">
+            <option value="Srbija">
+            <option value="Crna Gora">
+            <option value="Hrvatska">
+            <option value="Bosna i Hercegovina">
+            <option value="Slovenija">
+            <option value="Makedonija">
+            
+        </datalist>
+
+    </form>
+
+
+</body>
+
+
+</html>
+
