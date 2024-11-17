@@ -1,0 +1,406 @@
+body{
+    margin: 0px;
+    padding: 0px;
+
+
+}
+
+.header{
+    background-color: #fefefe;
+    border-bottom: 2px solid #dc0101;
+}
+
+
+.page{
+    
+}
+
+.footer{
+
+}
+
+.column{
+    border: 1px solid black;
+    width: 1000px;
+    margin: 0px auto;
+}
+
+
+/* sve column klase unutar page klasa */
+.page .column{
+    height: 100vh; /*100% visine prozora*/
+}
+
+/* # za pristup identifikatoru*/
+#logo-i-social{
+    display: flex;
+}
+
+#logo-holder{
+    flex-grow: 1;
+
+}
+#logo-holder img{
+    width: 140px;
+    height: 130px;
+}
+#social-holder{
+    flex-grow: 1;
+    text-align: right;
+}
+#social-holder a img{
+    width: 24px;
+    height: 24px;
+    margin: 5px;
+}
+#main-menu{
+    display:flex;
+}
+
+#main-menu a{
+    flex-grow: 1;
+    text-align: center;
+    display: block;
+    padding: 10px 0;
+    text-decoration: none;
+    color: #dc0101;
+    transition:200ms; /* laganiji prelaz izmedju  */
+}
+
+/* kad se predje misem preko tog elementa */
+#main-menu a:hover, 
+#main-menu a.active {
+    color: #ffffff;
+    background-color: #dc0101;
+}
+
+#pocetna{
+    text-align: center;
+    color: #ffffff;
+    background: url(assets/img/pozadina2.jfif);
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+#pocetna h1{
+    font-size: 48pt; 
+    margin-top: 0px;
+    padding-top: calc(50vh - 370px);
+
+}
+
+.dark-box{
+    background-color: #33333350;
+    border: 1px solid black;
+    font-size: 24pt;
+    padding: 40px;
+
+}
+#usluge{
+    background: url(assets/img/itservice.jfif);
+    background-size: cover;
+    background-attachment: fixed;
+}
+#karijera{
+    background: url(assets/img/pozadina4.jfif);
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+
+.krugovi{
+    display: flex;
+    margin: 25px 0;
+}
+.krug-holder{
+    flex-grow: 1;
+    text-align: center;
+
+}
+.krug{
+    background: #dc0101;
+    color: #ffffff;
+    font-size: 48px;
+    font-weight: bold;
+    padding: 25%; /* da bude u sredini */
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%; /*zaobljenost*/
+}
+
+.oznaka{
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.tehnologije{
+    display: flex; 
+    margin: 30px 0;
+
+}
+.tehnologija{
+    flex-grow: 1;  /* da svi zauzimaju istu sirinu*/
+    text-align: center;
+}
+/* flex-direction: row, row-reverse, column, column-reverse*/
+/*i posle postavis height!!!*/
+
+/*align-items: baseline, center, stretch*/
+/*za poravnanje*/
+
+/* justify-content: flex-start, flex-end, center, space-between, space-around, space-evenly*/
+/* za prostor izmedju elemenata*/
+
+/* align-content:flex-start, flex-end, center, space-around, space-evenly, stretch*/
+/*razmak izmedju elemenata*/
+.tehnologija img{
+    width: 48px;
+    height: 48px;
+}
+
+.tehnologija p{
+ font-weight: bold;
+
+}
+#usluge{
+    color: #ffffff;
+}
+
+#usluge h2{
+    padding-top: 40px;
+}
+
+
+.service-row{
+    display: flex;
+    margin-bottom: 40px;
+    justify-content: space-between;
+
+}
+
+.service-row > div{
+    text-align: center;
+    position: relative;
+    width: 220px;
+    height: 200px;
+    border: 1px solid white;
+}
+ 
+.service-row > div > img  {
+    position: absolute;
+    top: 0px;
+    left:0px;
+    right: 0px;
+    bottom: 0px;
+
+}
+
+.service-row > div > p{
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    padding: 10px;
+    background-color: #ffffffC0;
+    margin-bottom: 0px;
+    border-top: 1px solid white;
+    color: #000;
+    font-weight: bold;
+}
+
+#proizvodi h2{
+    padding-top: 50px;
+    text-align: center;
+
+}
+
+.matrica{
+    margin-top: 40px;
+    height: 500px;
+    display: grid;
+    grid-template: "a b c"
+                   "d b e"
+                   "f f g";
+    align-content: space-between;
+    justify-content: space-between;
+}
+
+#proizvod-a{
+    grid-area: a;
+}
+#proizvod-b{
+    grid-area: b;
+}
+
+#proizvod-c{
+    grid-area: c;
+}
+
+#proizvod-d{
+    grid-area: d;
+}
+
+#proizvod-e{
+    grid-area: e;
+}
+
+#proizvod-f{
+    grid-area: f;
+}
+#proizvod-g{
+    grid-area: g;
+}
+.proizvod{
+    display: grid;
+    grid-template: "region";
+    align-content: stretch;
+    justify-content: stretch;
+
+}
+
+.proizvod img{
+    grid-area: region;
+    justify-self: stretch;
+    align-self: stretch;
+
+    /* mora da se doda kada slike nisu kako treba */
+    width: 100%;
+    height: 100%;
+    /* ide gas */
+}
+
+.proizvod .text-holder{
+    grid-area: region;
+    justify-self: stretch;
+    align-self: stretch;
+    display: grid;
+    align-content: center;
+    justify-content: center;
+    font-size: 20px;
+    font-weight: bold;
+    background-color: #dc0101DD;
+    color: #fff;
+    opacity: 0.0;
+    transition: 500ms;
+
+}
+
+#karijera h2{
+    padding-top: 50px;
+    text-align: center;
+}
+
+.proizvod:hover .text-holder{
+    opacity: 1;
+}
+ 
+.career-columns{
+    display: flex;
+}
+
+.job-list{
+    flex-grow: 1;
+
+    /*inicijalna velicina!!!*/
+    flex-basis: 0; 
+
+}
+
+.job-descriptions{
+    flex-grow: 2;
+}
+
+.job-list label {
+    display: block;
+    margin-bottom: 10px;
+    border: 1px solid black;
+    background-color: #ffffffc0;
+    padding: 10px;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.job-descriptions input {
+    display: none;
+}
+
+.job-descriptions .job-description {
+    display: none;
+
+}
+
+.job-descriptions input:checked+.job-description{
+    display: block;
+}
+
+.job-description{
+    margin-left: 10px;
+    border: 1px solid black;
+    background-color: #ffffffc0;
+    padding: 10px;
+    font-size: 20px;
+}
+
+#kontakt h2{
+    margin-top: 50px;
+    margin-bottom: 20px;
+    text-align: center;
+
+}
+
+.kontakt-region{
+    display: grid;
+    grid-template: "adrese mapa"
+                   "mejlovi mapa";
+    grid-template-columns: 300px 1fr;               
+}
+
+.kontakt-adrese {
+    grid-area: adrese;
+    padding-bottom: 15px;
+    font-size: 15px;
+}
+
+.kontakt-mejlovi{
+    grid-area: mejlovi;
+}
+.kontakt-mapa{
+    grid-area: mapa;
+}
+
+.kontakt-mejlovi a{
+    text-decoration: none;
+    color: #dc0101;
+}
+
+.kontakt-mejlovi a:hover{
+    text-decoration: underline;
+}
+
+.footer{
+    border-top: 3px solid #dc0101;
+    background-color: #fefefe;
+  
+}
+
+.footer > .column{
+    display: flex;
+}
+
+.footer .footer-column{
+    flex-grow: 1;
+    flex-basis: 0;
+}
+
+.align-left {
+    text-align: left;
+}
+
+.align-right {
+    text-align: right;
+}
+
+
+/* 28.21 */
