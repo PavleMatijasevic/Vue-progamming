@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CinemaWorld - Repertoar</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>CinemaWorld</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Početna</a></li>
+        <li><a href="repertoar.html">Repertoar</a></li>
+        <li><a href="kupovina.html">Kupovina karata</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <h2>Repertoar filmova</h2>
+
+    <div id="filter-section">
+      <input type="text" id="search-bar" placeholder="Pretraži filmove...">
+      <select id="filter-genre">
+        <option value="">Svi žanrovi</option>
+        <option value="Akcija">Akcija</option>
+        <option value="Komedija">Komedija</option>
+        <option value="Drama">Drama</option>
+      </select>
+    </div>
+
+    <div id="filmovi"></div>
+  </main>
+  
+  <script>
+    // Simulirani podaci o filmovima
+    const filmovi = [
+      { naslov: "Kad porastem bicu kengur", poster: "poster1.jpg", zanr: "Akcija", trajanje: 120, ocena: 4, brojac :1 },
+      { naslov: "Montevideo Bog te video", poster: "poster2.jpg", zanr: "Komedija", trajanje: 95, ocena: 4, brojac : 2},
+      { naslov: "Toma", poster: "poster3.jpg", zanr: "Drama", trajanje: 140, ocena: 5, brojac : 3 },
+      { naslov: "Nedelja", poster: "poster4.jpg", zanr: "Akcija", trajanje: 110, ocena: 3, brojac : 4 },
+      { naslov: "Za danas toliko", poster: "poster5.jpg", zanr: "Komedija", trajanje: 100, ocena: 4, brojac : 5 },
+    ];
+
+    const filmoviContainer = document.getElementById("filmovi");
+    const searchBar = document.getElementById("search-bar");
+    const filterGenre = document.getElementById("filter-genre");
+
+    function prikaziFilmove(filmoviZaPrikaz) {
+  filmoviContainer.innerHTML = ""; 
+  filmoviZaPrikaz.forEach((film, index) => {
+    const filmKey = `Film${index + 1}`; // Generiši ključ na osnovu pozicije
+    const filmDiv = document.createElement("div");
+    filmDiv.className = "film";
+    filmDiv.innerHTML = `
+      <img src="${film.poster}" alt="Poster za ${film.naslov}">
+      <h3>${film.naslov}</h3>
+      <p>Žanr: ${film.zanr}</p>
+      <p>Trajanje: ${film.trajanje} min</p>
+      <p>Ocena: ${"★".repeat(film.ocena)}</p>
+      <button onclick="location.href='kupovina.html?film=Film${film.brojac}'">Kupi kartu</button>
+    `;
+    filmoviContainer.appendChild(filmDiv);
+  });
+}
+
+
+    function filtrirajFilmove() {
+      const searchQuery = searchBar.value.toLowerCase();
+      const selectedGenre = filterGenre.value;
+
+      const filtriraniFilmovi = filmovi.filter((film) => {
+        const odgovaraPretrazi = film.naslov.toLowerCase().includes(searchQuery);
+        const odgovaraZanru = selectedGenre === "" || film.zanr === selectedGenre;
+        return odgovaraPretrazi && odgovaraZanru;
+      });
+
+      prikaziFilmove(filtriraniFilmovi);
+    }
+
+    searchBar.addEventListener("input", filtrirajFilmove);
+    filterGenre.addEventListener("change", filtrirajFilmove);
+
+    prikaziFilmove(filmovi);
+  </script>
+</body>
+</html>

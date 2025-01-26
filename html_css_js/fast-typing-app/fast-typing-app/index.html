@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Brzo Kucanje</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Brzo Kucanje</h1>
+    <div id="main-menu">
+      <h2>Izaberite nivo težine:</h2>
+      <button class="level-button" data-level="easy">Početnik</button>
+      <button class="level-button" data-level="medium">Srednji nivo</button>
+      <button class="level-button" data-level="hard">Napredni</button>
+    </div>
+
+    <div id="typing-test" class="hidden">
+        <p id="text-to-type"></p>
+        <textarea id="text-input" placeholder="Otkucaj ovde..." rows="5"></textarea>
+        <div class="stats">
+          <p>Brzina: <span id="wpm">0</span> WPM</p>
+          <p>Greške: <span id="errors">0</span></p>
+          <p>Preostalo vreme: <span id="time-remaining">60</span> sekundi</p>
+        </div>
+        <button id="finish-button">Završi test</button>
+        <button id="reset-button">Pokušaj ponovo</button>
+      </div>
+      
+    <div id="results" class="hidden">
+      <h2>Rezultati</h2>
+      <p>Brzina: <span id="final-wpm"></span> WPM</p>
+      <p>Tačnost: <span id="accuracy"></span>%</p>
+      <p id="feedback-message"></p>
+      <button id="back-to-menu">Nazad u meni</button>
+    </div>
+    
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>

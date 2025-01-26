@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CinemaWorld - Kupovina karata</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>CinemaWorld</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Početna</a></li>
+        <li><a href="repertoar.html">Repertoar</a></li>
+        <li><a href="kupovina.html">Kupovina karata</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <h2>Kupovina karata</h2>
+    <div id="film-info">
+      <h3 id="film-title">Naziv filma</h3>
+      <img id="film-poster" src="#" alt="Poster filma">
+    </div>
+  
+    <form id="kupovina-form">
+      <label for="datum">Datum projekcije:</label>
+      <input type="date" id="datum" required>
+  
+      <label for="vreme">Vreme projekcije:</label>
+      <select id="vreme" required>
+        <option value="18:00">18:00</option>
+        <option value="20:00">20:00</option>
+        <option value="22:00">22:00</option>
+      </select>
+  
+      <label for="broj-karata">Broj karata:</label>
+      <input type="number" id="broj-karata" min="1" max="10" value="1" required>
+  
+      <p>Ukupna cena: <span id="ukupna-cena">0</span> RSD</p>
+  
+      <button type="submit">Potvrdi kupovinu</button>
+    </form>
+  </main>
+  
+  
+
+  <script>
+    // Simulirani podaci o filmovima
+    const filmovi = {
+  Film1: { naslov: "Kad porastem bicu kengur", poster: "poster1.jpg", cena: 500 },
+  Film2: { naslov: "Montevideo Bog te video", poster: "poster2.jpg", cena: 400 },
+  Film3: { naslov: "Toma", poster: "poster3.jpg", cena: 600 },
+  Film4: { naslov: "Nedelja", poster: "poster4.jpg", cena: 450 },
+  Film5: { naslov: "Za danas toliko", poster: "poster5.jpg", cena: 700 },
+};
+
+  
+    // Preuzimanje parametra iz URL-a
+    const urlParams = new URLSearchParams(window.location.search);
+    const filmKey = urlParams.get("film");
+  
+    // Postavljanje informacija o filmu
+    if (filmKey && filmovi[filmKey]) {
+      const film = filmovi[filmKey];
+      document.getElementById("film-title").textContent = film.naslov;
+      document.getElementById("film-poster").src = film.poster;
+  
+      // Azuriranje cene pri promeni broja karata
+      const brojKarataInput = document.getElementById("broj-karata");
+      const ukupnaCenaElement = document.getElementById("ukupna-cena");
+  
+      function azurirajCenu() {
+        const brojKarata = parseInt(brojKarataInput.value) || 1;
+        ukupnaCenaElement.textContent = brojKarata * film.cena;
+      }
+  
+      brojKarataInput.addEventListener("input", azurirajCenu);
+      azurirajCenu();
+    } else {
+      document.querySelector("main").innerHTML = "<p>Greška: Film nije pronađen.</p>";
+    }
+  
+    // Simulacija potvrde kupovine
+    document.getElementById("kupovina-form").addEventListener("submit", (e) => {
+      e.preventDefault();
+      alert("Kupovina uspešno potvrđena! Hvala što ste koristili CinemaWorld.");
+      window.location.href = "index.html"; 
+    });
+  </script>
+  
+</body>
+</html>
