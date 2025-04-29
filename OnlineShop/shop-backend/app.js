@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const sequelize = require('./config/db');
-const routes = require('./routes/index'); // OVDE je važno da se učita kao Router
+const routes = require('./routes/index'); // OVDE je vazno da se ucita kao Router
 
 const app = express();
 const db = require('./models');

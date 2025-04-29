@@ -1,10 +1,17 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import Pocetna from '../components/Pocetna.vue';
 import Proizvodi from '../components/Proizvodi.vue';
+import DodajProizvod from '../components/DodajProizvod.vue'
 
 const routes = [
   { path: '/', component: Pocetna },
-  { path: '/kategorija/:id', component: Proizvodi }
+  { path: '/kategorija/:id', component: Proizvodi },
+  {
+    path: '/admin/dodaj-proizvod',
+    name: 'DodajProizvod',
+    component: DodajProizvod,
+    meta: { requiresAdmin: true }
+  }
 ];
 
 const router = createRouter({
@@ -12,4 +19,13 @@ const router = createRouter({
   routes
 });
 
+router.beforeEach((to, from, next) => {
+    const korisnik = JSON.parse(localStorage.getItem('korisnik'));
+    if (to.meta.requiresAdmin && (!korisnik || korisnik.uloga !== 'admin')) {
+      alert('Pristup dozvoljen samo administratorima.');
+      next('/');
+    } else {
+      next();
+    }
+  });
 export default router;
