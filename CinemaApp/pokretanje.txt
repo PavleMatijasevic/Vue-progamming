@@ -1,4 +1,3 @@
 back: npm run dev
 front: npm run serve
 
-postgresql server 17: nadimak pa 123
