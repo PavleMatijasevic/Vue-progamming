@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 import Pocetna from '../components/Pocetna.vue';
 import Proizvodi from '../components/Proizvodi.vue';
 import DodajProizvod from '../components/DodajProizvod.vue'
+import Korpa from '../components/Korpa.vue';
 
 const routes = [
   { path: '/', component: Pocetna },
@@ -11,7 +12,9 @@ const routes = [
     name: 'DodajProizvod',
     component: DodajProizvod,
     meta: { requiresAdmin: true }
-  }
+  },
+  { path: '/korpa', component: Korpa }
+
 ];
 
 const router = createRouter({
