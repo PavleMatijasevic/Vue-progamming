@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { Kategorija } = require('../models');
 
-// 📌 GET sve kategorije
+//  GET sve kategorije
 router.get('/', async (req, res) => {
   try {
     const kategorije = await Kategorija.findAll();
@@ -12,7 +12,7 @@ router.get('/', async (req, res) => {
   }
 });
 
-// 📌 POST nova kategorija (admin)
+//  POST nova kategorija (admin)
 router.post('/', async (req, res) => {
   try {
     const { naziv } = req.body;
@@ -22,7 +22,7 @@ router.post('/', async (req, res) => {
     res.status(400).json({ error: 'Greška prilikom kreiranja kategorije' });
   }
 });
-// 📌 DELETE kategorija po ID (admin)
+//  DELETE kategorija po ID (admin)
 router.delete('/:id', async (req, res) => {
   try {
     const id = req.params.id;
