@@ -6,11 +6,15 @@ const routes = require('./routes/index'); // OVDE je vazno da se ucita kao Route
 const app = express();
 const db = require('./models');
 const kategorijaRoutes = require('./routes/kategorija');
+const porudzbinaRoutes = require('./routes/porudzbina')
+const authRoutes = require('./routes/auth')
 
 app.use(cors());
 app.use(express.json());
 app.use('/api', routes); // ovde koristimo Router
 app.use('/api/kategorije', kategorijaRoutes);
+app.use('/api/porudzbine', porudzbinaRoutes);
+app.use('/api/auth', authRoutes);
 
 sequelize.authenticate()
   .then(() => {

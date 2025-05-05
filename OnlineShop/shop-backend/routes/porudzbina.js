@@ -2,28 +2,36 @@ const express = require('express');
 const router = express.Router();
 const { Porudzbina, StavkaPorudzbine } = require('../models');
 
-// Kreiraj porudžbinu
+// 📌 Kreiranje porudžbine
 router.post('/', async (req, res) => {
   try {
-    const novaPorudzbina = await Porudzbina.create(req.body, {
-      include: [StavkaPorudzbine]
-    });
-    res.status(201).json(novaPorudzbina);
-  } catch (error) {
-    res.status(400).json({ error: 'Greška prilikom kreiranja porudžbine' });
-  }
-});
+    const { korisnikId, proizvodi } = req.body;
 
-// Dohvati sve porudžbine korisnika
-router.get('/korisnik/:korisnikId', async (req, res) => {
-  try {
-    const porudzbine = await Porudzbina.findAll({
-      where: { korisnikId: req.params.korisnikId },
-      include: [StavkaPorudzbine]
-    });
-    res.json(porudzbine);
-  } catch (error) {
-    res.status(500).json({ error: 'Greška prilikom dohvatanja porudžbina' });
+    if (!korisnikId || !proizvodi || !Array.isArray(proizvodi)) {
+      return res.status(400).json({ error: 'Nedostaju podaci' });
+    }
+
+    // Ukupna cena
+    const ukupnaCena = proizvodi.reduce((sum, p) => sum + p.cena, 0);
+
+    // Kreiranje porudžbine
+    const porudzbina = await Porudzbina.create({ korisnikId, ukupnaCena });
+
+    // Dodavanje stavki
+    for (const proizvod of proizvodi) {
+      await StavkaPorudzbine.create({
+        porudzbinaId: porudzbina.id,
+        proizvodId: proizvod.id,
+        kolicina: 1,
+        cena: proizvod.cena,
+      });
+    }
+
+    res.status(201).json({ poruka: 'Porudžbina uspešno kreirana' });
+
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Greška pri kreiranju porudžbine' });
   }
 });
 

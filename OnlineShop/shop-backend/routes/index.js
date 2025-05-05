@@ -8,4 +8,5 @@ const proizvodRoutes = require('./proizvod');
 router.use('/kategorije', kategorijaRoutes);
 router.use('/proizvodi', proizvodRoutes);
 
+
 module.exports = router;

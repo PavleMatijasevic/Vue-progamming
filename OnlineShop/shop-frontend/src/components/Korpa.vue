@@ -45,15 +45,35 @@
     localStorage.setItem('korpa', JSON.stringify(proizvodi.value));
   };
   
-  const potvrdiPorudzbinu = () => {
-    if (proizvodi.value.length === 0) {
-      alert('Vaša korpa je prazna.');
-      return;
-    }
+  const potvrdiPorudzbinu = async () => {
+  if (proizvodi.value.length === 0) {
+    alert('Vaša korpa je prazna.');
+    return;
+  }
+
+  const korisnik = JSON.parse(localStorage.getItem('korisnik'));
+  if (!korisnik) {
+    alert('Morate biti prijavljeni da biste izvršili porudžbinu.');
+    return;
+  }
+
+  try {
+    await axios.post('http://localhost:5000/api/porudzbine', {
+      korisnikId: korisnik.id,
+      proizvodi: proizvodi.value
+    });
+
     alert('Porudžbina uspešno kreirana!');
     proizvodi.value = [];
     localStorage.removeItem('korpa');
-  };
+  } catch (err) {
+    console.error('Greška pri kreiranju porudžbine:', err);
+    alert('Došlo je do greške pri slanju porudžbine.');
+  }
+};
+
+
+
   
   const ukupno = computed(() => {
     return proizvodi.value.reduce((sum, p) => sum + parseFloat(p.cena), 0).toFixed(2);
